@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= artist.name%></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="main" >
+        <div class="mainarea" style=" width: 100%;">
+            <div class="mainarea-under" style="background-color: #000;">
+                <div class="basicInfo">
+                    <form action="/admin/songs/admin" method="get">
+                        <button style="margin-bottom: 2rem;" class="button-back"><i class="fa-solid fa-angle-left"></i></button>
+                    </form>
+                </div>
+                <div class="artist-upper">
+                    <div class="artists-images-click">
+                        <div class="inner-artists-image" style="display: flex;">
+                            <div class="artist-img">
+                                <img src="<%=artist.image%>" alt="" style="border-radius: 50%; height: 22rem; width: 22rem;">
+                            </div>
+                            <div class="inner-artists-name">
+                                <div class="verify" style="display: flex;">
+                                    <i class="bi bi-patch-check-fill" style="margin-right: 10px;"></i>
+                                    <p>Verified Artist</p>
+                                </div>
+                                <p class="name-artists-inner"><%= artist.name%></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="songinfoff">
+                    <div class="sn">
+                        <h6>Song Name</h6>
+                    </div>
+                    <div class="songduration">
+                        <!-- <i class="fa-regular fa-clock"></i> -->
+                    </div>
+                </div>
+                <div class="songs">
+                    <div class="allsongs">
+                        <ol>
+                            <% artist.songs.forEach((song, index) => { %>
+                                <li>
+                                    <a href="/admin/play/<%= artist._id %>/<%= index %>/artist" style="text-decoration: none;">
+                                        <div class="songname">
+                                            <div class="songname-inner">
+                                                <p><%=song.title%></p>
+                                            </div>
+                                            <div class="delete">
+                                                <form action="/admin/songs/<%=artist.id%>/song/<%=song.id%>/admin?_method=DELETE" method="post">
+                                                    <button class="btn btn-outline-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            <%})%>
+                        </ol>
+                        </div>
+                    </div>
+
+                    <div class="add-songs-btn" style="display: flex; justify-content: center; margin-top: 2rem;" >
+                        <input type="checkbox" id="toggleCheckbox" class="toggle-checkbox" />                        
+                        <label for="toggleCheckbox" id="addSongArtist" class="toggle-button btn btn-outline-light">
+                            Add Songs
+                        </label>
+                        <div class="addSongsDiv" id="addSongArtistDiv">
+                            <div class="addSongsDivContainer">
+                                <label for="toggleCheckbox" class="close-button">&times;</label>
+                                <form action="/admin/songs/<%=artist.id%>/addnewsong/admin" method="POST" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="exampleFormControlInput1">Song Name</label>
+                                        <!-- <input type="text" class="form-control" id="exampleFormControlInput1" name="text" required> -->
+                                        <input type="text" name="title" id="exampleFormControlInput1" class="form-control" placeholder="Title of the Song" aria-label="Username" aria-describedby="addon-wrapping">
+                                        <label for="exampleFormControlInput2">Song Url</label>
+                                        <input type="file"name="song" accept="audio/*" class="form-control" id="inputGroupFile02 exampleFormControlInput2" style="margin-bottom: 1rem;">
+                                        <!-- <input type="file" name="song" accept="audio/*" class="form-control" id="exampleFormControlInput2" required> -->
+                                        <button id="done">Done</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%- include("../includes/footer.ejs")%>
+                </div>
+            </div>
+            
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="/js/adminapp.js"></script>
+    
+</body>
+</html>

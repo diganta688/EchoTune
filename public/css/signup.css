@@ -1,0 +1,228 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111727; /* Dark theme background */
+    color: #fff; /* Text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('signup.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Container styling */
+.containerr {
+    width: 25rem;
+    margin: 20px auto;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    background-color: #2126463b; /* Dark background for container */
+    border: 1px solid #333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover */
+    
+
+}
+
+
+
+/* Logo and heading */
+.logo {
+    position: relative;
+    top: 1rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+.hambargur{
+    font-size: 20px;
+    position: relative;
+    bottom: 0.4rem;
+    display: none;
+}
+
+.bi-spotify {
+    font-size: 30px;
+}
+
+.head-line {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 1000;
+    font-style: normal;
+}
+    /* Form and input styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.email-addr {
+    display: flex;
+    align-items: start;
+    width: 100%;
+    margin-bottom: 2%;
+    margin-top: 5%;
+    font-size: 14px;
+    margin-left: 7%;
+}
+
+input[type="text"], input[type="password"] {
+    width: 95%;
+    height: 40px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.404);
+    border-radius: 5.5px;
+    background-color: transparent; /* Dark input background */
+    color: #ffffff; /* Input text color */
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color: none;
+    box-shadow: none;
+}
+
+input::placeholder{
+    /* color: rgb(255, 255, 255); */
+    font-weight: 700;
+}
+
+
+/* Buttons */
+#login-btn {
+    width: 100%;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.082);
+    border: 1px solid white;
+    color: #fff;
+    border-radius: 25px; /* More rounded button */
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    margin-top: 2rem;
+}
+
+
+.transparent-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 45px;
+    background-color: transparent;
+    color: white;
+    font-weight: 700;
+    border: 2px solid #ffffff;
+    border-radius: 40px; /* Rounded edges */
+    cursor: pointer;
+    margin-bottom: 10px;
+    opacity: 0.7;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+}
+
+.transparent-btn img.btn-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px; /* Space between logo and text */
+    margin-left: 5px;
+}
+
+.transparent-btn:hover {
+    color: #fff;
+    opacity: 1;
+}
+
+.transparent-btn:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(29, 185, 84, 0.5);
+}
+
+/* Or divider */
+.or-main {
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sub-line {
+    width: 8.1rem;
+    background-color: #ffffff;
+    height: 1px;
+    opacity: 0.5;
+}
+
+.sub-or {
+    margin: 3%;
+    position: relative;
+    top: 0.5rem;
+}
+
+/* Links */
+p a {
+    color: #6ab3dd;
+    text-decoration: none;
+}
+
+p a:hover {
+    color: #3295c0;
+}
+
+/* Create account link */
+#create-account {
+    margin-top: 20px;
+    text-align: center;
+    color: #666;
+}
+
+#create-account a {
+    text-decoration: none;
+    color: #6ab3dd;
+}
+
+#create-account a:hover {
+    color: #3295c0;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: #999;
+    margin-top: 20px;
+}
+
+/* Forgot password link */
+.use-num {
+    position: relative;
+    right: 1rem;
+    display: flex;
+    align-items: start;
+    width: 18.5rem;
+    padding-bottom: 0.5cm;
+}
+
+@media (max-width:439px){
+    .containerr{
+        width: 20rem;
+    }
+    .use-num{
+        left: 1rem;
+    }
+}

@@ -1,0 +1,54 @@
+<div class="sidebar">
+    <div class="logo-area">
+        <a href="#">
+            <div class="logo">
+                <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+            <div class="logo-name">
+                <p>EchoTune</p>
+            </div>
+        </a>
+    </div>
+    <div class="playlist-content">
+        <div class="album-create-icon">
+            <div class="album">
+                <div class="album-name">
+                    <p>Your Albums</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="favSongs">
+            <a href="">
+                <div class="favSongIcon">
+                    <i class="fa-solid fa-heart"></i>
+                    <p style="display: inline; margin: 0;">Favourite Songs</p>
+                </div>
+            </a>
+        </div> -->
+        <div class="create-playlist-box">
+            <h4>Create Your first Paylist</h4>
+            <button id="create-playlist-sidebar">Create playlist</button>
+        </div>
+        <div class="allplaylists">
+            <div class="playlist">
+                <p>Playlists</p>
+            </div>
+            <div class="playlistsongs">
+                <%for(playlist of user.playlists){%>
+                    <div class="first-song" style="display: flex; justify-content: space-between;">
+                        <a href="/user/playlist/<%=playlist.id%>" style="color: white; text-decoration: none;">
+                            <div class="playlist-name">
+                                <p><%=playlist.name%></p> 
+                            </div>
+                        </a>
+                            <a href="/user/delete/playlist/<%=user.id%>/<%=playlist.id%>" style="color: white; opacity: 0.7;">
+                                <div class="delete-playlist" style="margin-right: 5px;">
+                                    <i class="fa-solid fa-trash"></i>
+                                </div>
+                            </a>
+                        </div>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
