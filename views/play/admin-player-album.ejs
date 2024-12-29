@@ -56,20 +56,9 @@
         let song= document.getElementById("songs");
         let ctrlIcon= document.getElementById("ctrlIcon");
 
-        // song.style.backgroundColor="red"
     
         const songs = JSON.parse('<%-JSON.stringify(songs) %>');
         let currentIndex = songs.findIndex(song => song._id === "<%= song._id %>");
-        
-        function nextSong() {
-            currentIndex = (currentIndex + 1) % songs.length;
-            window.location.href = `/play/${songs[currentIndex]._id}/<%= album.id%>/album`;
-        }
-    
-        function previousSong() {
-            currentIndex = (currentIndex - 1 + songs.length) % songs.length;
-            window.location.href = `/play/${songs[currentIndex]._id}/<%= album.id%>/album`;
-        }
 
         song.onloadedmetadata = function(){
             progress.max = song.duration;
@@ -100,6 +89,14 @@
             song.currentTime = progress.value;
             ctrlIcon.classList.add("fa-pause");
             ctrlIcon.classList.remove("fa-play");
+        }
+
+        song.addEventListener("ended", function () {
+            nextSong();
+        });
+
+        function nextSong() {
+            window.location.href = '/admin/play/<%= albumId %>/<%= nextIndex %>/album';
         }
     </script>
     
