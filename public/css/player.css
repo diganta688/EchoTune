@@ -4,6 +4,9 @@ html{
     box-sizing: border-box;
 }
 
+#shuffleButton.active {
+    color: #007bff; /* Highlight color */
+}
 body{
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
