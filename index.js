@@ -4,7 +4,6 @@ if(process.env.NODE_ENV!= "production"){
 
 const express = require("express");
 const app = express();
-const port = 3000;
 const path = require('path');
 const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
@@ -17,6 +16,10 @@ const expresserr = require("./extra/expresserror.js");
 const userroute = require("./routes/user.js");
 const adminroute = require("./routes/admin.js");
 const User = require("./models/User.js");
+const model = require("./models/popular_artistssss.js");
+const model2 = require("./models/popular_albummmm.js");
+const data = require("./init/popular_artists.js");
+const data2 = require("./init/popular_albums.js");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
@@ -27,12 +30,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 
-main()
-.then(()=>console.log("Connected to MongoDB"))
-.catch((err)=>console.log(err));
-async function main(){
-    await mongoose.connect('mongodb://127.0.0.1:27017/music',  { useNewUrlParser: true, useUnifiedTopology: true });
-};
+
 const sessionoption = {
     secret: 'secret key',
     resave: false,
@@ -59,14 +57,35 @@ app.get("/",(req, res)=>{
 });
 app.use("/user", userroute);
 app.use("/admin", adminroute);
+app.get("/add/dummy/data", async(req, res)=>{
+    try {
+        await model.deleteMany({});
+        await model.insertMany(data.data);
+        await model2.deleteMany({});
+        await model2.insertMany(data2.data2);
+        res.send("data1 & 2 save done")
+      } catch (err) {
+        console.error("Error saving data:", err);
+      }
+})
 app.all("*", (req, res, next) =>{
     next(new expresserr(404, "page not found"));
 });
 app.use((err, req, res, next)=>{
     let{status=500, message="Something went wrong"} = err;
-    res.status(status).render("err.ejs", {err});
+    res.status(status).render("err.ejs", {message});
     
 });
-app.listen(port, ()=>{
-    console.log("app is listning at port "+port);
+app.listen(process.env.PORT || 3000, () => {
+  mongoose
+    .connect(process.env.MONGO_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log("DB connected");
+    })
+    .catch((error) => {
+      console.error(`DB connection error: ${error}`);
+    });
 });
