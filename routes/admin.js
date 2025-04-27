@@ -5,21 +5,32 @@ const popular_album = require("../models/popular_albummmm.js");
 const Songs = require("../models/songs.js");
 const User = require('../models/User.js');
 const Admin = require('../models/admin.js');
-const multer = require('multer');
 const path = require('path');
 const wrapasync = require("../extra/wrapasync.js");
 const {saveRedirectUrl, isadminLoggeddIn} = require("../middleware.js");
 const passport = require("passport");
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 
 
-const storage = multer.diskStorage({
-    destination: './public/uploads/',
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname));
-    },
+// cloudinary config
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
   });
+  const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+      folder: 'songs', // Folder inside Cloudinary
+      resource_type: 'video', // Important! Because audio is under 'video' in Cloudinary
+      format: async (req, file) => 'mp3', // force file format (or remove if you want original)
+      public_id: (req, file) => Date.now() + '-' + file.originalname.split('.')[0]
+    }
+  });
+  
   const upload = multer({ storage: storage });
-
 //!homepage
 router.get("/", (req, res)=>{
     res.render("admin/admin-login.ejs")
@@ -87,8 +98,7 @@ router.post("/songs/:id/addnewsong/admin", isadminLoggeddIn, upload.single('song
     let artists = await popular_artists.findById(req.params.id);
     const newSong = new Songs({
         title: req.body.title,
-        // owner: artists._id,
-        audioPath: `/uploads/${req.file.filename}`,
+        audioPath: req.file.path,
     });    
     artists.songs.push(newSong)
     await newSong.save();
@@ -101,8 +111,7 @@ router.post("/songs/:id/addnewsong/admin/album", isadminLoggeddIn, upload.single
     let album = await popular_album.findById(req.params.id);
     const newSong = new Songs({
         title: req.body.title,
-        // owner: album._id,
-        audioPath: `/uploads/${req.file.filename}`,
+        audioPath: req.file.path,
     });
     album.songs.push(newSong);
     await newSong.save();
