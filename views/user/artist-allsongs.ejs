@@ -4,84 +4,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= artist.name%></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        /* Make artist image responsive */
+        .artist-img img {
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* Flexbox for the artist image and name layout */
+        .inner-artists-image {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        .name-artists-inner {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Song List Styles */
+        .allsongs ol {
+            padding: 0;
+            list-style: none;
+        }
+
+        .allsongs li {
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            transition: background 0.3s;
+        }
+
+        .allsongs li:hover {
+            background-color: #222;
+        }
+
+        .allsongs a {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Responsiveness for smaller screens */
+        @media (max-width: 768px) {
+            .artist-img img {
+                width: 180px;
+                height: 180px;
+            }
+
+            .name-artists-inner {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .artist-img img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .name-artists-inner {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
-<body>
-    <div class="main">
-        <div class="mainarea" style=" width: 100%;">
-            <div class="mainarea-under" style="background-color: #111727;">
-                <form action="/user/music" method="get">
-                    <button style="margin-bottom: 2rem;" class="button-back"><i class="fa-solid fa-angle-left"></i></button>
-                </form>
-                <div class="artist-upper">
-                    <div class="artists-images-click">
-                        <div class="inner-artists-image" style="display: flex;">
-                            <div class="artist-img">
-                                <img src="<%=artist.image%>" alt="">
-                            </div>
-                            <div class="inner-artists-name">
-                                <div class="verify" style="display: flex;">
-                                    <i class="bi bi-patch-check-fill" style="margin-right: 10px;"></i>
-                                    <p>Verified Artist</p>
-                                </div>
-                                <p class="name-artists-inner"><%= artist.name%></p>
-                            </div>
-                        </div>
+
+<body class="bg-dark text-white">
+
+    <div class="" style="height: 100dvh;">
+        <!-- Back Button -->
+        <div class="m-3 mx-5">
+            <form action="/user/music" method="get">
+                <button class="btn btn-outline-light">
+                    <i class="fa-solid fa-angle-left"></i> Back
+                </button>
+            </form>
+        </div>
+
+        <!-- Artist Header -->
+        <div class="text-center">
+            <div class="inner-artists-image">
+                <div class="artist-img">
+                    <img src="<%= artist.image %>" alt="<%= artist.name %>">
+                </div>
+                <div>
+                    <p class="name-artists-inner"><%= artist.name %></p>
+                    <div class="verify" style="display: flex; justify-content: center;">
+                        <i class="bi bi-patch-check-fill" style="margin-right: 10px;"></i>
+                        <p>Verified Artist</p>
                     </div>
                 </div>
-                <div class="songinfoff">
-                    <div class="sn">
-                        <h6>Song Name</h6>
-                    </div>
-                    <div class="songduration">
-                        <!-- <i class="fa-regular fa-clock"></i> -->
-                    </div>
-                </div>
-                <div class="songs">
-                    <div class="allsongs">
-                        <ol>
-                            <% artist.songs.forEach((song, index) => { %>
-                                <li>
-                                    <a href="/user/play/<%= artist._id %>/<%= index %>/artist" style="text-decoration: none;">
-                                        <div class="songname">
-                                            <div class="songname-inner">
-                                                <p><%=song.title%></p>
-                                            </div>
-                                            <div class="threedots-songs">
-                                                    <i class="fa-solid fa-ellipsis"></i>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            <%})%>
-                        </ol>
-                        </div>
-                    </div>
-                    <%- include("../includes/footer.ejs")%>
             </div>
         </div>
-        <div class="profile-dropdown">
-            <ul class="list-group" style="cursor: pointer;">
-                <li class="list-group-item" style="border-bottom: none;"><i class="fa-solid fa-xmark" id="x-mark2"></i></li>
-                <li class="list-group-item" style="font-weight: 700;"><%= username%></li>
-                <li class="list-group-item"><%= user.email%></li>
-                <li class="list-group-item">Subscription</li>
-                <li class="list-group-item" id="create-playlist-sidebar2">Create playlist</li>
-                <a href="/user/logout" style="color: #000; text-decoration: none; height: 100%;">
-                    <li class="list-group-item">
-                        <div class="logout" style="margin-left: 20px; ">
-                            <p style="font-size: 15px; margin-left: 0; margin-bottom: 0;">logout</p>
-                        </div>
-                    </li>
-                </a>
-            </ul>
+
+        <!-- Song List -->
+        <div class="songinfoff mb-3">
+            <h4>Song List</h4>
         </div>
+
+        <div class="allsongs" style="padding: 0 3rem;">
+            <ol class="p-0 py-3">
+                <% artist.songs.forEach((song, index) => { %>
+                    <li style="height: 100%;">
+                        <a href="/user/play/<%= artist._id %>/<%= index %>/artist">
+                            <div><%= song.title %></div>
+                            <div>
+                                <i class="fa-solid fa-ellipsis"></i>
+                            </div>
+                        </a>
+                    </li>
+                <% }) %>
+            </ol>
+        </div>
+
+        <!-- Footer Include -->
+        <%- include("../includes/footer.ejs") %>
+
     </div>
+
     <script src="/js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>

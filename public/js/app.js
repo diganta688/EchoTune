@@ -1,4 +1,7 @@
 const createplaylist = document.getElementById("create-playlist-sidebar");
+const createplaylistCloseDialogue = document.getElementById("playlists-display-dialouge");
+const closeplaylistCloseDialogue = document.getElementById("dialougePlaylisClose");
+const blurBackgroundPlaylist = document.getElementById("blurBG");
 const createplaylist2 = document.getElementById("create-playlist-sidebar2");
 const createplaylistopen = document.getElementById("create-playlist-div");
 const createplaylistclose = document.getElementById("x-mark");
@@ -21,11 +24,16 @@ createplaylist2.addEventListener("click", ()=>{
 
 createplaylistclose.addEventListener("click", ()=>{
     createplaylistopen.style.display = "none"
-    
 });
+createplaylistCloseDialogue.addEventListener("click", ()=>{
+    blurBackgroundPlaylist.style.display="flex";
+    profiledropdown.style.display = "none";        
+});
+closeplaylistCloseDialogue.addEventListener("click", ()=>{
+    blurBackgroundPlaylist.style.display="none";
+})
 
 closeprofile.addEventListener("click", ()=>{
-    
     profiledropdown.style.display = "none";
 })
 

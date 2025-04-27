@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router({mergeParams: true});
-// const SongAlbum = require("../models/songsss_album.js");
-// const SongArtist = require('../models/songsss_artist.js');
 const popular_artists = require("../models/popular_artistssss.js");
 const popular_album = require("../models/popular_albummmm.js");
 const wrapasync = require("../extra/wrapasync.js");

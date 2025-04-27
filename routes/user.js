@@ -73,9 +73,7 @@ router.post("/add/playlist/:id", isuserLoggeddIn,  wrapasync(async(req, res)=>{
 //!playlist
 router.get("/playlist/:id", isuserLoggeddIn, wrapasync(async(req, res)=>{
     let{id} = req.params; 
-    let playlist = await Playlist.findById(id).populate('songs');
-    // console.log(playlist);
-    
+    let playlist = await Playlist.findById(id).populate('songs');    
     let songs = await Songs.find({});
     res.render("playlist/userPlayList.ejs", {playlist, songs});
 }));

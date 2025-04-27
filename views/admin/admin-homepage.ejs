@@ -43,51 +43,52 @@
             </div>
         </div>
         <div class="mainContent">
-            <div class="artist">
-                <div class="title">
-                    <p>All Artist</p>
-                </div>
-                <%for(artist of allArtists){%>
-                    <div class="mainDivForEveryArtist">
-                        <a href="/admin/songs/<%= artist.id%>/admin">
-                            <div class="artistPhoto">
-                                <div class="innerArtistPhoto">
-                                    <img src="<%= artist.image%>" alt="" srcset="">
-                                </div>
-                            </div>
-                            <div class="artistName">
-                                <p><%= artist.name%></p>
-                            </div>
-                            <div class="artistAllBtns">
-                                <form action="/" method="post">
-                                    <button style="
-                                width: 3rem;
-                                height: 2rem;
-                                background: rgb(39, 182, 238);
-                                border: none;
-                                border-radius: 5px;
-                                font-weight: 600;
-                                font-size: 15px;
-                                margin-right: 1rem;
-                                ">Edit</button>
-                                </form>
-                                <form action="/admin/delete/artist/<%=artist.id%>?_method=DELETE" method="post">
-                                    <button style="
-                                width: 5rem;
-                                height: 2rem;
-                                background: rgba(238, 39, 39, 0.808);
-                                border: none;
-                                border-radius: 5px;
-                                font-weight: 600;
-                                font-size: 15px;
-                                ">Delete</button>
-                                </form>
-                            </div>
-                        </a>
+            <div class="" style="width: 100%; display: flex; justify-content:center; flex-wrap: wrap; height: 100dvb; overflow-y: auto;">
+                <div class="artist">
+                    <div class="title">
+                        <p>All Artist</p>
                     </div>
-                <%}%>
-
-            </div>
+                    <%for(artist of allArtists){%>
+                        <div class="mainDivForEveryArtist">
+                            <a href="/admin/songs/<%= artist.id%>/admin">
+                                <div class="artistPhoto">
+                                    <div class="innerArtistPhoto">
+                                        <img src="<%= artist.image%>" alt="" srcset="">
+                                    </div>
+                                </div>
+                                <div class="artistName">
+                                    <p><%= artist.name%></p>
+                                </div>
+                                <div class="artistAllBtns">
+                                    <form action="/" method="post">
+                                        <button style="
+                                    width: 3rem;
+                                    height: 2rem;
+                                    background: rgb(39, 182, 238);
+                                    border: none;
+                                    border-radius: 5px;
+                                    font-weight: 600;
+                                    font-size: 15px;
+                                    margin-right: 1rem;
+                                    ">Edit</button>
+                                    </form>
+                                    <form action="/admin/delete/artist/<%=artist.id%>?_method=DELETE" method="post">
+                                        <button style="
+                                    width: 5rem;
+                                    height: 2rem;
+                                    background: rgba(238, 39, 39, 0.808);
+                                    border: none;
+                                    border-radius: 5px;
+                                    font-weight: 600;
+                                    font-size: 15px;
+                                    ">Delete</button>
+                                    </form>
+                                </div>
+                            </a>
+                        </div>
+                    <%}%>
+    
+                </div>
             <div class="album artist">
                 <div class="title">
                     <p>All Albums</p>
@@ -167,8 +168,9 @@
                 <%}%>
                 
             </div>
+            </div>
         </div>
-        <div class="addArtistAndAlbum">
+        <div class="addArtistAndAlbum pb-3" style="background-color: black;">
             <div class="addArtist">
                 <button type="button" class="btn btn-outline-warning" id="addartist">Add Artist</button>
             </div>

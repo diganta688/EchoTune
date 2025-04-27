@@ -102,9 +102,6 @@ body{
 .mainContent{
     height: 83vh;
     margin: 0 2rem;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
     justify-content: space-evenly;
     padding: 2rem 0 0 0;
 }
@@ -124,6 +121,7 @@ body{
 }
 
 .artist{
+    min-width: 300px;
     overflow-y: auto;
     height:78vh;
     padding: 10px;
@@ -364,4 +362,10 @@ body{
     box-shadow: var(--hover-shadows), var(--accent) 0px 0px 30px 5px;
     background-color: var(--accent);
     transform: scale(0.95);
+  }
+
+  @media (max-width: 568px) {
+    .logoName{
+        display: none;
+    }
   }
