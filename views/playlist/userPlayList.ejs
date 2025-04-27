@@ -1,110 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= playlist.name%></title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    
-    <div class="main">
-        <div class="mainarea" style=" width: 100%;">
-            <div class="mainarea-under" style="background-color: #111727;">
-                <form action="/user/music" method="get">
-                    <button style="margin-bottom: 2rem;" class="button-back"><i class="fa-solid fa-angle-left"></i></button>
-                </form>
-                <div class="album-upper artist-upper">
-                    <div class="artists-images-click">
-                        <div class="inner-artists-image" style="display: flex;">
-                            <div class="artist-img">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBUCj2g_h71R96fzWwarG4YbIA6Ri_-Bh-dEu020ouBzWpA-H8z3Fq3-0a9UHHv2zSGMY&usqp=CAU" alt="" style="height: 15rem; width: 100%;">
-                            </div>
-                            <div class="inner-artists-name">
-                                <p class="name-artists-inner"><%= playlist.name%> #Playlist</p>
-                            </div>
-                        </div>
-                </div>
-                </div>
-                <div class="songinfoff">
-                    <div class="songname">
-                        <p>Song Name</p>
-                    </div>
-                    <div class="songduration">
-                        <!-- <i class="fa-regular fa-clock"></i> -->
-                    </div>
-                </div>
-                <div class="songs">
-                    <div class="allsongs">
-                        <ol>
-                            <% playlist.songs.forEach((song, index) => { %>
-                                <li >
-                                    <a href="/user/play/<%= playlist._id %>/<%= index %>" style="text-decoration: none;">
-                                        <div class="songname">
-                                            <div class="songname-inner">
-                                                <p><%=song.title%></p>
-                                            </div>
-                                            <div class="delete">
-                                                <form action="/user/playlist/<%=playlist.id %>/<%=song.id %>?_method=DELETE" method="post">
-                                                    <button class="btn btn-outline-danger">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            <%})%>
-                        </ol>
-                        </div>
-                    </div>
-                    <style>
-                        .addSongBtn{
-                            display: flex;
-                            justify-content: center;
-                        }
-                    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= playlist.name %> - Playlist</title>
 
-                    <div class="addSongBtn">
-                        <input type="checkbox" id="toggleCheckboxxx" class="toggle-checkboxx" />                        
-                        <label for="toggleCheckboxxx" id="addSongArtist" class="toggle-buttonn btn btn-outline-light">
-                            Add Songs
-                        </label>
-                        <div class="addSongsDivPlaylist" id="AddSongs">
-                            <div class="innerAddSongs">
-                                <div class="allSongTag">
-                                    <div class="allSongText">
-                                        <p>AllSongs</p>
-                                    </div>
-                                    <div class="allSongCross">
-                                        <label for="toggleCheckboxxx" class="close-buttonn">&times;</label>
-                                    </div>
-                                </div>
-                                <div class="songList">
-                                    <%for(song of songs){%>
-                                    <div class="song">
-                                        <div class="songNamePlaylist">
-                                            <p><%= song.title%></p>
-                                        </div>
-                                        <div class="addBtn">
-                                            <a href="/user/playlist/addsong/<%= playlist.id%>/<%= song.id%>">
-                                                <button type="button" class="btn btn-outline-info">Add</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <%}%>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <%- include("../includes/footer.ejs")%>
-                </div>
-            
-        </div>
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Custom Styles -->
+  <style>
+    .artist-img img {
+      border-radius: 50%;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+    }
+    .inner-artists-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+    .name-artists-inner {
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+    }
+    .allsongs ol {
+      padding: 0;
+      list-style: none;
+    }
+    .allsongs li {
+      background-color: #111;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      transition: background 0.3s;
+      height: 4rem;
+    }
+    .allsongs li:hover {
+      background-color: #222;
+    }
+    .allsongs a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      text-decoration: none;
+    }
+    .songinfoff {
+      margin: 2rem 0 1rem 0;
+      font-weight: 600;
+    }
+    .songinfoff p {
+      font-size: 1.2rem;
+    }
+    .addSongBtn {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .addSongsDivPlaylist {
+      display: none;
+      margin-top: 1rem;
+    }
+    #toggleCheckboxxx:checked ~ #AddSongs {
+      display: block;
+    }
+    .close-buttonn {
+      font-size: 2rem;
+      cursor: pointer;
+      float: right;
+      margin-right: 10px;
+    }
+    /* Responsive tweaks */
+    @media (max-width: 768px) {
+      .artist-img img {
+        width: 180px;
+        height: 180px;
+      }
+      .name-artists-inner {
+        font-size: 2rem;
+      }
+      .allsongs li {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+    @media (max-width: 480px) {
+      .artist-img img {
+        width: 120px;
+        height: 120px;
+      }
+      .name-artists-inner {
+        font-size: 1.5rem;
+      }
+      .songinfoff p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white">
+
+  <div class="container py-4">
+
+    <!-- Back Button -->
+    <div class="mb-4">
+      <form action="/user/music" method="get">
+        <button class="btn btn-outline-light">
+          <i class="fa-solid fa-angle-left"></i> Back
+        </button>
+      </form>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- Playlist Header -->
+    <div class="text-center">
+      <div class="inner-artists-image">
+        <div class="artist-img">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBUCj2g_h71R96fzWwarG4YbIA6Ri_-Bh-dEu020ouBzWpA-H8z3Fq3-0a9UHHv2zSGMY&usqp=CAU" alt="Playlist Image">
+        </div>
+        <div>
+          <p class="name-artists-inner"><%= playlist.name %> #Playlist</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Song List Heading -->
+    <div class="songinfoff">
+      <p>Song Name</p>
+    </div>
+
+    <!-- Song List -->
+    <div class="allsongs">
+      <ol class="p-0 py-3">
+        <% playlist.songs.forEach((song, index) => { %>
+          <li>
+            <a href="/user/play/<%= playlist._id %>/<%= index %>">
+              <div><%= song.title %></div>
+              <div>
+                <form action="/user/playlist/<%= playlist.id %>/<%= song.id %>?_method=DELETE" method="post" style="margin: 0;">
+                  <button class="btn btn-outline-danger btn-sm">Delete</button>
+                </form>
+              </div>
+            </a>
+          </li>
+        <% }) %>
+      </ol>
+    </div>
+
+    <!-- Add Songs Button and Pop-up (Kept Exactly Same) -->
+    <div class="addSongBtn">
+      <input type="checkbox" id="toggleCheckboxxx" class="toggle-checkboxx" />
+      <label for="toggleCheckboxxx" id="addSongArtist" class="toggle-buttonn btn btn-outline-light">
+        Add Songs
+      </label>
+      
+      <div class="addSongsDivPlaylist" id="AddSongs">
+        <div class="innerAddSongs">
+          <div class="allSongTag d-flex justify-content-between align-items-center">
+            <div class="allSongText">
+              <p>All Songs</p>
+            </div>
+            <div class="allSongCross">
+              <label for="toggleCheckboxxx" class="close-buttonn">&times;</label>
+            </div>
+          </div>
+          <div class="songList">
+            <% songs.forEach((song) => { %>
+              <div class="song d-flex justify-content-between align-items-center mb-2">
+                <div class="songNamePlaylist">
+                  <p><%= song.title %></p>
+                </div>
+                <div class="addBtn">
+                  <a href="/user/playlist/addsong/<%= playlist.id %>/<%= song.id %>">
+                    <button type="button" class="btn btn-outline-info btn-sm">Add</button>
+                  </a>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Include -->
+    <%- include("../includes/footer.ejs") %>
+
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
