@@ -1035,119 +1035,125 @@ body::-webkit-scrollbar {
     background-color: var(--accent);
     transform: scale(0.95);
 }
-
 .addSongsDiv {
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100vh;
     backdrop-filter: blur(10px);
-    background-color: #1d151515;
-    display: none;
-    top: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .addSongsDivContainer {
-    position: fixed;
-    left: 42%;
-    top: 38%;
-    padding: 2rem;
-    width: 300px;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
     background: linear-gradient(#212121, #212121) padding-box;
     border: 2px solid rgba(102, 100, 100, 0.377);
-    padding: 32px 24px;
-    font-size: 14px;
-    font-family: inherit;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    box-sizing: border-box;
+    padding: 40px 24px 24px 24px;
     border-radius: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    color: white;
+    font-family: inherit;
+    z-index: 1001;
 }
 
-.addSongsDivContainer i {
-    color: gray;
-    position: relative;
-    left: 14rem;
-    font-size: 25px;
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #bbb;
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-.addSongsDivContainer button:active {
-    scale: 0.95;
+.close-button:hover {
+    color: white;
 }
 
-.addSongsDivContainer .form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.addSongsDivContainer .form-group {
+.form-group {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 5px;
 }
 
-.addSongsDivContainer .form-group label {
-    display: block;
-    margin-bottom: 5px;
+.form-group label {
     color: #717171;
-    font-weight: 600;
     font-size: 12px;
+    font-weight: 600;
 }
 
-.addSongsDivContainer .form-group input {
+.form-group input {
     width: 100%;
     padding: 12px 16px;
-    border-radius: 8px;
-    color: #fff;
-    font-family: inherit;
-    background-color: transparent;
+    background: transparent;
     border: 1px solid #414141;
-}
-
-.addSongsDivContainer .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
     border-radius: 8px;
-    resize: none;
-    color: #fff;
-    height: 96px;
-    border: 1px solid #414141;
-    background-color: transparent;
+    color: white;
     font-family: inherit;
 }
 
-.addSongsDivContainer .form-group input::placeholder {
+.form-group input::placeholder {
     opacity: 0.5;
 }
 
-.addSongsDivContainer .form-group input:focus {
+.form-group input:focus {
     outline: none;
 }
 
-.addSongsDivContainer .form-group textarea:focus {
-    outline: none;
-}
-
-.addSongsDivContainer .form-submit-btn {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    align-self: flex-start;
-    font-family: inherit;
-    color: #717171;
-    font-weight: 600;
-    width: 40%;
+.form-submit-btn {
+    width: 100%;
     background: #313131;
+    color: white;
     border: 1px solid #414141;
     padding: 12px 16px;
-    font-size: inherit;
-    gap: 8px;
-    margin-top: 8px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
     cursor: pointer;
-    border-radius: 6px;
+    transition: background 0.3s ease;
 }
+
+.form-submit-btn:hover {
+    background: #414141;
+}
+
+.form-submit-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .addSongsDivContainer {
+        width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .addSongsDivContainer {
+        width: 90%;
+        padding: 32px 16px 16px 16px;
+    }
+}
+
+
 
 #done {
     --hover-shadows: 16px 16px 33px #121212, -16px -16px 33px #303030;
@@ -1195,7 +1201,7 @@ body::-webkit-scrollbar {
 
 /* Show content when checkbox is checked */
 #toggleCheckbox:checked+label+#addSongArtistDiv {
-    display: block;
+    display: flex;
 }
 
 /* Close Button (Cross Icon) Styling */

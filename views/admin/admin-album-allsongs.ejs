@@ -137,21 +137,25 @@
             Add Songs
         </label>
         <div class="addSongsDiv" id="addSongArtistDiv">
-            <div class="addSongsDivContainer">
-                <label for="toggleCheckbox" class="close-button">&times;</label>
-                <form action="/admin/songs/<%=album.id%>/addnewsong/admin/album" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Song Name</label>
-                        <!-- <input type="text" class="form-control" id="exampleFormControlInput1" name="text" required> -->
-                        <input type="text" name="title" id="exampleFormControlInput1" class="form-control" placeholder="Title of the Song" aria-label="Username" aria-describedby="addon-wrapping">
-                        <label for="exampleFormControlInput2">Song Url</label>
-                        <input type="file"name="song" accept="audio/*" class="form-control" id="inputGroupFile02 exampleFormControlInput2" style="margin-bottom: 1rem;">
-                        <!-- <input type="file" name="song" accept="audio/*" class="form-control" id="exampleFormControlInput2" required> -->
-                        <button id="done">Done</button>
-                    </div>
-                </form>
-            </div>
+          <div class="addSongsDivContainer">
+            <button type="button" class="close-button" id="closeAddSong">&times;</button>
+        
+            <form action="/admin/songs/<%=album.id%>/addnewsong/admin/album" method="POST" enctype="multipart/form-data" class="form">
+              <div class="form-group">
+                <label for="exampleFormControlInput1">Song Name</label>
+                <input type="text" name="title" id="exampleFormControlInput1" class="form-control" placeholder="Title of the Song" aria-label="Username" aria-describedby="addon-wrapping">
+              </div>
+        
+              <div class="form-group">
+                <label for="exampleFormControlInput2">Song Url</label>
+                <input type="file" name="song" accept="audio/*" class="form-control" id="inputGroupFile02 exampleFormControlInput2">
+              </div>
+        
+              <button type="submit" class="form-submit-btn">Done</button>
+            </form>
+          </div>
         </div>
+        
     </div>
 
     <!-- Add Song Form -->

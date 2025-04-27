@@ -1,34 +1,35 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: black;
 }
 
-.main{
+.main {
     height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
 
-.basicInfo{
+.basicInfo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 2rem;
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     font-size: 30px;
     cursor: pointer;
     color: rgba(255, 255, 255, 0.288);
     transition: all 0.2s ease 0s;
-    &:hover{
+
+    &:hover {
         color: white;
     }
 }
@@ -38,22 +39,23 @@ body{
     margin-left: 10px;
 }
 
-.adminPageInfo{
+.adminPageInfo {
     cursor: pointer;
     color: white;
     font-size: 30px;
     color: rgba(255, 255, 255, 0.288);
     transition: all 0.2s ease 0s;
-    &:hover{
+
+    &:hover {
         color: white;
     }
 }
 
-.adminPageInfo p{
+.adminPageInfo p {
     margin: 0;
 }
 
-.profileAdmin{
+.profileAdmin {
     height: 45px;
     width: 45px;
     border-radius: 50%;
@@ -66,13 +68,13 @@ body{
     font-size: 20px;
 }
 
-.profileAdmin i{
+.profileAdmin i {
     position: relative;
     left: 14px;
     top: 25%;
 }
 
-.profileDropdownAdmin{
+.profileDropdownAdmin {
     display: none;
     width: 15rem;
     position: fixed;
@@ -80,11 +82,11 @@ body{
     top: 6rem;
 }
 
-.profileDropdownAdmin li{
+.profileDropdownAdmin li {
     opacity: 1;
 }
 
-.profileDropdownAdmin ul li:hover{
+.profileDropdownAdmin ul li:hover {
     opacity: 0.8;
 }
 
@@ -94,51 +96,53 @@ body{
     border-bottom: none;
 }
 
-.profileDropdownAdmin li a{
+.profileDropdownAdmin li a {
     text-decoration: none;
     color: black;
 }
 
-.mainContent{
-    height: 83vh;
+.mainContent {
+    height: 88dvh;
+    overflow-y: auto;
     margin: 0 2rem;
     justify-content: space-evenly;
     padding: 2rem 0 0 0;
 }
 
-.title{
+.title {
     font-size: 20px;
     color: white;
     font-weight: 700;
     border-bottom: 0.5px solid transparent;
     margin-bottom: 1.5rem;
     transition: all 0.2s ease-in 0s;
-    
+
 }
 
-.title p{
+.title p {
     margin-bottom: 0.5px;
 }
 
-.artist{
+.artist {
     min-width: 300px;
     overflow-y: auto;
-    height:78vh;
+    height: 100%;
     padding: 10px;
-    &:hover{
-        .title{
+
+    &:hover {
+        .title {
             border-bottom: 0.5px solid white;
         }
     }
-    
+
 }
 
-.artist::-webkit-scrollbar{
+.artist::-webkit-scrollbar {
     display: none;
 }
 
 
-.mainDivForEveryArtist{
+.mainDivForEveryArtist {
     height: 17rem;
     width: auto;
     border: 2px solid rgba(255, 255, 255, 0.37);
@@ -146,35 +150,38 @@ body{
     margin-bottom: 1rem;
     border-radius: 20px;
     transition: all 0.3s ease 0s;
-    &:hover{
+
+    &:hover {
         border: 2px solid white;
-        .artistPhoto img{
+
+        .artistPhoto img {
             transform: scale(1.03);
         }
-        .artistName p{
+
+        .artistName p {
             text-decoration: underline;
         }
     }
 }
 
-.mainDivForEveryArtist a{
+.mainDivForEveryArtist a {
     text-decoration: none;
 }
 
-.artistPhoto{
+.artistPhoto {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.artistPhoto img{
+.artistPhoto img {
     height: 10rem;
     width: 10rem;
     border-radius: 50%;
     transition: all 0.2s ease 0s;
 }
 
-.artistName p{
+.artistName p {
     text-align: center;
     color: white;
     font-size: 20px;
@@ -182,49 +189,50 @@ body{
     transition: all 0.2s ease 0s;
 }
 
-.artistAllBtns{
+.artistAllBtns {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
-.artistAllBtns .btn-outline-info{
+.artistAllBtns .btn-outline-info {
     margin-right: 0.5rem;
 }
 
-.userDetail{
+.userDetail {
     border: 2px solid rgba(255, 255, 255, 0.37);
     border-radius: 15px;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color:  rgba(255, 255, 255, 0.589);
+    color: rgba(255, 255, 255, 0.589);
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 1rem;
     transition: all 0.2s ease 0s;
-    &:hover{
+
+    &:hover {
         border: 2px solid white;
         color: white;
     }
 }
 
-.userDetail p{
+.userDetail p {
     margin: 0;
     display: inline;
 }
 
-.addArtistAndAlbum{
-    height: 3rem;
-    /* border: 2px solid white; */
+.addArtistAndAlbum {
+    height: 5rem;
+    position: relative;
     margin: 0 2rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.create-playlist-div{
+.create-playlist-div {
     position: fixed;
     height: 100vh;
     width: 100%;
@@ -232,7 +240,7 @@ body{
     display: none;
 }
 
-.form-container{
+.form-container {
     position: relative;
     width: 20rem;
     margin: 25% auto;
@@ -252,7 +260,7 @@ body{
     border-radius: 16px;
 }
 
-.form-container i{
+.form-container i {
     color: gray;
     position: relative;
     left: 14rem;
@@ -261,29 +269,29 @@ body{
 
 .form-container button:active {
     scale: 0.95;
-  }
-  
-  .form-container .form {
+}
+
+.form-container .form {
     display: flex;
     flex-direction: column;
     gap: 20px;
-  }
-  
-  .form-container .form-group {
+}
+
+.form-container .form-group {
     display: flex;
     flex-direction: column;
     gap: 2px;
-  }
-  
-  .form-container .form-group label {
+}
+
+.form-container .form-group label {
     display: block;
     margin-bottom: 5px;
     color: #717171;
     font-weight: 600;
     font-size: 12px;
-  }
-  
-  .form-container .form-group input {
+}
+
+.form-container .form-group input {
     width: 100%;
     padding: 12px 16px;
     border-radius: 8px;
@@ -291,9 +299,9 @@ body{
     font-family: inherit;
     background-color: transparent;
     border: 1px solid #414141;
-  }
-  
-  .form-container .form-group textarea {
+}
+
+.form-container .form-group textarea {
     width: 100%;
     padding: 12px 16px;
     border-radius: 8px;
@@ -303,23 +311,23 @@ body{
     border: 1px solid #414141;
     background-color: transparent;
     font-family: inherit;
-  }
-  
-  .form-container .form-group input::placeholder {
+}
+
+.form-container .form-group input::placeholder {
     opacity: 0.5;
-  }
-  
-  .form-container .form-group input:focus {
+}
+
+.form-container .form-group input:focus {
     outline: none;
 
-  }
-  
-  .form-container .form-group textarea:focus {
+}
+
+.form-container .form-group textarea:focus {
     outline: none;
 
-  }
-  
-  .form-container .form-submit-btn {
+}
+
+.form-container .form-submit-btn {
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -336,9 +344,9 @@ body{
     margin-top: 8px;
     cursor: pointer;
     border-radius: 6px;
-  }
+}
 
-  #playsub {
+#playsub {
     --hover-shadows: 16px 16px 33px #121212, -16px -16px 33px #303030;
     --accent: rgba(90, 87, 90, 0.699);
     font-weight: bold;
@@ -350,22 +358,22 @@ body{
     color: white;
     padding: 1em 2em;
     transition: box-shadow ease-in-out 0.3s, background-color ease-in-out 0.1s,
-      letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
+        letter-spacing ease-in-out 0.1s, transform ease-in-out 0.1s;
     box-shadow: 13px 13px 10px #1c1c1c, -13px -13px 10px #262626;
-  }
-  
+}
+
 #playsub:hover {
     box-shadow: var(--hover-shadows);
-  }
-  
+}
+
 #playsub:active {
     box-shadow: var(--hover-shadows), var(--accent) 0px 0px 30px 5px;
     background-color: var(--accent);
     transform: scale(0.95);
-  }
+}
 
-  @media (max-width: 568px) {
-    .logoName{
+@media (max-width: 568px) {
+    .logoName {
         display: none;
     }
-  }
+}
