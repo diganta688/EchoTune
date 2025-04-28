@@ -73,7 +73,7 @@ app.all("*", (req, res, next) =>{
 });
 app.use((err, req, res, next)=>{
     let{status=500, message="Something went wrong"} = err;
-    res.status(status).render("err.ejs", {message});
+    res.status(status).render("err.ejs", {err});
     
 });
 app.listen(process.env.PORT || 3000, () => {
